@@ -1,10 +1,3 @@
-//
-//  SOUS_LOCATests.swift
-//  SOUS-LOCATests
-//
-//  Created by Yassine Kaddouri on 09/11/2024.
-//
-
 import Testing
 
 struct SOUS_LOCATests {

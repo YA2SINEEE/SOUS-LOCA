@@ -1,10 +1,3 @@
-//
-//  SOUS_LOCAUITestsLaunchTests.swift
-//  SOUS-LOCAUITests
-//
-//  Created by Yassine Kaddouri on 09/11/2024.
-//
-
 import XCTest
 
 final class SOUS_LOCAUITestsLaunchTests: XCTestCase {

@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  SOUS-LOCA
-//
-//  Created by Yassine Kaddouri on 09/11/2024.
-//
-
 import SwiftUI
 
 struct ContentView: View {
