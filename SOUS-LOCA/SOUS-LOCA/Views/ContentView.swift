@@ -5,7 +5,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $tabSelection) {
-            Text("Tab Content 1")
+            AnnouncementsView()
                 .tag(1)
             Text("Tab Content 2")
                 .tag(2)
