@@ -9,7 +9,7 @@ struct ContentView: View {
                 .tag(1)
             ActualityView()
                 .tag(2)
-            Text("Tab Content 3")
+            FormationView()
                 .tag(3)
             Text("Tab Content 4")
                 .tag(4)
