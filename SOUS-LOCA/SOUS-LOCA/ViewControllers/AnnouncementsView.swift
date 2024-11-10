@@ -2,7 +2,7 @@ import SwiftUI
 import FirebaseFirestore
 
 struct AnnouncementsView: View {
-    @State private var announcements: [(title: String, imageUrl: String)] = []
+    @State private var announcements: [(title: String, imageUrl: String, description: String)] = []
     @State private var currentIndex: Int = 0
     @State private var timer: Timer?
 
@@ -19,39 +19,51 @@ struct AnnouncementsView: View {
                         let announcement = announcements[index]
                         
                         VStack {
-                            // Carte avec titre au-dessus de l'image
-                            VStack {
-                                Text(announcement.title)
-                                    .font(.headline)
-                                    .padding(.bottom, 8)
-                                    .foregroundColor(.white) // Titre en haut
-                                
+                            HStack {
+                                // Image à gauche avec taille flexible
                                 AsyncImage(url: URL(string: announcement.imageUrl)) { image in
                                     image
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: 100, height: 100)
+                                        .frame(width: 120, height: 120) // Taille fixe pour l'image (modifiable selon votre besoin)
                                         .clipped()
                                 } placeholder: {
                                     Color.gray.opacity(0.2)
-                                        .frame(width: 100, height: 100)
+                                        .frame(width: 120, height: 120) // Placeholder avec la même taille
                                 }
+                                .padding(10) // Padding autour de l'image uniquement
+                                
+                                // VStack avec titre et description à droite
+                                VStack(alignment: .leading) {
+                                    Text(announcement.title)
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .padding(.bottom, 8)
+                                    
+                                    Text(announcement.description) // Description sous le titre
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .lineLimit(nil) // Permet au texte de s'afficher en plusieurs lignes si nécessaire
+                                        .fixedSize(horizontal: false, vertical: true) // S'assurer que le texte s'adapte
+                                }
+                                .padding(.leading, 5) // Ajout de padding entre l'image et le texte
+                                
                             }
-                            .frame(width: cardWidth, height: 150) // Taille dynamique des cartes
+                            .frame(width: cardWidth, height: 120) // Limiter la taille de chaque carte
                             .background(
                                 RoundedRectangle(cornerRadius: 15)
                                     .fill(LinearGradient(gradient: Gradient(colors: [Color("Color1"), Color("Color2")]), startPoint: .bottomLeading, endPoint: .topTrailing))
                                     .shadow(color: .black.opacity(0.4), radius: 20) // Ombre autour de la carte sans décalage
                             )
                         }
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 10) // Padding vertical autour de chaque carte
                     }
                 }
                 .padding(.horizontal, (geometry.size.width - cardWidth) / 2) // Centrer la carte dans la vue
                 .offset(x: CGFloat(currentIndex) * -(spacing + cardWidth)) // Décalage ajusté pour l'espacement
                 .animation(.easeInOut(duration: 1), value: currentIndex) // Animation du défilement
             }
-            .frame(height: 150) // Limiter la hauteur de l'affichage des annonces
+            .frame(height: 120) // Limiter la hauteur de l'affichage des annonces
 
             Spacer()
         }
@@ -75,7 +87,8 @@ struct AnnouncementsView: View {
                     self.announcements = snapshot?.documents.compactMap { document in
                         let title = document["title"] as? String ?? ""
                         let imageUrl = document["imageUrl"] as? String ?? ""
-                        return (title, imageUrl)
+                        let description = document["description"] as? String ?? "" // Récupérer la description
+                        return (title, imageUrl, description)
                     } ?? []
                 }
             }

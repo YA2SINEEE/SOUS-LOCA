@@ -7,7 +7,7 @@ struct ContentView: View {
         TabView(selection: $tabSelection) {
             AnnouncementsView()
                 .tag(1)
-            Text("Tab Content 2")
+            ActualityView()
                 .tag(2)
             Text("Tab Content 3")
                 .tag(3)
