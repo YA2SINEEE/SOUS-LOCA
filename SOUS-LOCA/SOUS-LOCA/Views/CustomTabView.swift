@@ -9,7 +9,7 @@ struct CustomTabView: View {
         ("book","Actualités"),
         ("video","Formation"),
         ("person","Contact"),
-        ("gear","Paramètres")
+        //("gear","Paramètres")
     ]
     
     var body: some View {

@@ -13,8 +13,8 @@ struct ContentView: View {
                 .tag(3)
             Text("Tab Content 4")
                 .tag(4)
-            Text("Tab Content 5")
-                .tag(5)
+            /*Text("Tab Content 5")
+                .tag(5)*/
         }
         .overlay(alignment: .bottom) {
             CustomTabView(tabSelection: $tabSelection)

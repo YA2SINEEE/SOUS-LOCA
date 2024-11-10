@@ -67,6 +67,7 @@ struct AnnouncementsView: View {
 
             Spacer()
         }
+        .background(Color("Color3")) // Utilisation de Color1 comme fond
         .onAppear {
             loadAnnouncements()
             startScrollingAnnouncements()
