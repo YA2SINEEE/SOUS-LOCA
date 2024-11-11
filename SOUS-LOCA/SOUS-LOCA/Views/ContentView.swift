@@ -11,7 +11,7 @@ struct ContentView: View {
                 .tag(2)
             FormationView()
                 .tag(3)
-            Text("Tab Content 4")
+            ContactView()
                 .tag(4)
             /*Text("Tab Content 5")
                 .tag(5)*/
